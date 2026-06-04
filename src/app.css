@@ -1,7 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+/* Antares design tokens — one file per brand × theme.
+   Each file scopes its vars to :root[data-brand="..."][data-theme="..."] so
+   they only activate when the matching attributes are set on <html>. */
+@import "./tokens/sisal.light.css";
+@import "./tokens/sisal.dark.css";
+@import "./tokens/sisalbusiness.light.css";
+@import "./tokens/sisalbusiness.dark.css";
+@import "./tokens/sisalcasino.light.css";
+@import "./tokens/sisalcasino.dark.css";
+@import "./tokens/snai.light.css";
+@import "./tokens/snai.dark.css";
+@import "./tokens/pokerstars.light.css";
+@import "./tokens/pokerstars.dark.css";
+@import "./tokens/eloterie.light.css";
+@import "./tokens/eloterie.dark.css";
+@import "./tokens/mdjs.light.css";
+@import "./tokens/mdjs.dark.css";
+@import "./tokens/millipiyango.light.css";
+@import "./tokens/millipiyango.dark.css";
+
+/* Temporary patches over upstream tokens — see file header. */
+@import "./tokens.overrides.css";
+
+/* Shared component styles — framework-agnostic. */
+@import "./lib/Button.css";
+
 @import "tailwindcss";
 
 html,
 body {
   margin: 0;
   min-height: 100svh;
+  font-family: "Roboto", ui-sans-serif, system-ui, sans-serif;
 }

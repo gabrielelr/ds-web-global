@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
+import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,7 +11,15 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [svelte(), tailwindcss()],
+  plugins: [svelte(), react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      input: {
+        index: path.resolve(dirname, 'index.html'),
+        reactPlayground: path.resolve(dirname, 'react-playground.html')
+      }
+    }
+  },
   test: {
     projects: [{
       extends: true,

@@ -1,0 +1,16 @@
+/* Local overrides for upstream design tokens.
+ * Remove individual blocks once the corresponding tokens are fixed in
+ * antares-design-tokens and re-synced into src/tokens/.
+ *
+ * Selector specificity matches the per-brand/per-theme blocks in
+ * src/tokens/*.css (one element + two attribute selectors). Because
+ * this file is imported AFTER them in app.css, equal-specificity ties
+ * are resolved in our favor.
+ */
+
+:root[data-brand="pokerstars"][data-theme] {
+  /* PokerStars buttons must be fully pill-shaped on both sizes.
+   * Upstream tokens currently ship md=16px, sm=8px. */
+  --button-size-md-border-radius: 9999px;
+  --button-size-sm-border-radius: 9999px;
+}

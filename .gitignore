@@ -11,6 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+.tokens-staging
+
+# Antares design tokens source (vendor-supplied; not versioned here).
+# Drop the folder back in to re-run `npm run build:tokens`.
+-antares-foundations
 
 # Editor directories and files
 .vscode/*
