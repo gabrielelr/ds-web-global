@@ -1,16 +1,69 @@
 {
-  "name": "bbox-test",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@gabrielelr/ds-web-global",
+  "version": "0.1.0",
+  "description": "Antares design-system components for the web (React + Svelte 5) with multi-brand CSS tokens.",
+  "license": "UNLICENSED",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielelr/ds-web-global.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "files": [
+    "dist/react",
+    "dist/svelte",
+    "dist/Button.css",
+    "src/tokens",
+    "src/tokens.overrides.css",
+    "README.md"
+  ],
+  "main": "./dist/react/react.cjs",
+  "module": "./dist/react/react.js",
+  "types": "./dist/react/react.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/react/react.d.ts",
+      "import": "./dist/react/react.js",
+      "require": "./dist/react/react.cjs"
+    },
+    "./svelte": {
+      "types": "./dist/svelte/svelte.d.ts",
+      "svelte": "./dist/svelte/svelte.js",
+      "import": "./dist/svelte/svelte.js"
+    },
+    "./css": "./dist/Button.css",
+    "./tokens/*.css": "./src/tokens/*.css",
+    "./tokens-overrides.css": "./src/tokens.overrides.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "build:tokens": "node scripts/build-tokens.mjs",
+    "build:lib:react": "tsup",
+    "build:lib:svelte": "svelte-package -i src/lib -o dist/svelte && node scripts/clean-svelte-dist.mjs",
+    "build:lib:css": "cp src/lib/Button.css dist/Button.css",
+    "build:lib": "npm run build:lib:react && npm run build:lib:svelte && npm run build:lib:css",
+    "prepublishOnly": "npm run build:lib",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "svelte": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true },
+    "react-dom": { "optional": true },
+    "svelte": { "optional": true }
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "devDependencies": {
     "@chromatic-com/storybook": "^5.2.1",
     "@storybook/addon-a11y": "^10.4.1",
@@ -18,6 +71,7 @@
     "@storybook/addon-svelte-csf": "^5.1.2",
     "@storybook/addon-vitest": "^10.4.1",
     "@storybook/svelte-vite": "^10.4.1",
+    "@sveltejs/package": "^2.5.8",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.2.15",
@@ -29,12 +83,11 @@
     "storybook": "^10.4.1",
     "style-dictionary": "^5.4.3",
     "svelte": "^5.55.5",
+    "svelte2tsx": "^0.7.56",
     "tailwindcss": "^4.3.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
     "vite": "^8.0.12",
     "vitest": "^4.1.7"
-  },
-  "peerDependencies": {
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
   }
 }

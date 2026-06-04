@@ -1,43 +1,126 @@
-# Svelte + Vite
+# @gabrielelr/ds-web-global
 
-This template should help get you started developing with Svelte in Vite.
+Antares design-system components for the web — Svelte 5 + React 19 in a
+single package, sharing one CSS contract and multi-brand × theme tokens.
 
-## Recommended IDE Setup
+Currently ships:
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- `Button` (`appearance` × `hierarchy` × `size` × `state`)
+- 8 brand × 2 theme token sheets (Sisal, Sisal Business, Sisal Casinò,
+  SNAI, PokerStars, eLoterie, MDJS, Millî Piyango × light/dark)
 
-## Need an official Svelte framework?
+## Install
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+The package is published to **GitHub Packages**. Create a personal access
+token with `read:packages` (Settings → Developer settings → Personal
+access tokens) and add it to your project's `.npmrc`:
 
-## Technical considerations
-
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```ini
+# .npmrc
+@gabrielelr:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
+
+Export `GITHUB_TOKEN` in your shell (or CI). Then:
+
+```bash
+npm install @gabrielelr/ds-web-global
+```
+
+Peer deps depending on your framework:
+
+```bash
+# React side
+npm install react react-dom
+
+# Svelte side
+npm install svelte
+```
+
+## Setup — load tokens
+
+Pick the brand × theme you want and import the token sheet **once** at
+your app entry. The sheet scopes its CSS variables to
+`:root[data-brand="…"][data-theme="…"]`, so you also need to set those
+attributes on `<html>`.
+
+```html
+<!doctype html>
+<html lang="en" data-brand="sisal" data-theme="light">
+  …
+</html>
+```
+
+```ts
+// app entry
+import '@gabrielelr/ds-web-global/css';
+import '@gabrielelr/ds-web-global/tokens/sisal.light.css';
+```
+
+For runtime brand switching, import every brand sheet you need and flip
+the attribute on `document.documentElement`.
+
+## Usage — React
+
+```tsx
+import { Button } from '@gabrielelr/ds-web-global';
+
+export function Cta() {
+  return (
+    <Button hierarchy="primary" size="md" label="Continue" onClick={…} />
+  );
+}
+```
+
+API: `appearance`, `hierarchy`, `size`, `state`, `label`, `showLeftIcon`,
+`showRightIcon`, `leftIcon`, `rightIcon`, `disabled`, plus every native
+`<button>` attribute.
+
+## Usage — Svelte
+
+```svelte
+<script>
+  import { Button } from '@gabrielelr/ds-web-global/svelte';
+</script>
+
+<Button hierarchy="primary" size="md" label="Continue" onclick={…} />
+```
+
+Same prop set as the React version. Snippet slots `leftIcon` /
+`rightIcon` if you need a custom glyph.
+
+## Available token sheets
+
+```
+@gabrielelr/ds-web-global/tokens/sisal.{light,dark}.css
+@gabrielelr/ds-web-global/tokens/sisalbusiness.{light,dark}.css
+@gabrielelr/ds-web-global/tokens/sisalcasino.{light,dark}.css
+@gabrielelr/ds-web-global/tokens/snai.{light,dark}.css
+@gabrielelr/ds-web-global/tokens/pokerstars.{light,dark}.css
+@gabrielelr/ds-web-global/tokens/eloterie.{light,dark}.css
+@gabrielelr/ds-web-global/tokens/mdjs.{light,dark}.css
+@gabrielelr/ds-web-global/tokens/millipiyango.{light,dark}.css
+```
+
+For temporary upstream patches (e.g. PokerStars pill radius), also
+import:
+
+```ts
+import '@gabrielelr/ds-web-global/tokens-overrides.css';
+```
+
+## Contributing
+
+```bash
+npm install
+npm run storybook         # Svelte playground on :6006
+npm run dev               # Vite — index.html + react-playground.html on :5173
+npm run build:tokens      # Recompile tokens (requires -antares-foundations/)
+npm run build:lib         # Produce dist/ for publishing
+```
+
+To publish a new version:
+
+1. Bump `version` in `package.json`.
+2. `npm run build:lib`
+3. `npm publish` (uses `publishConfig.registry` to target GitHub Packages).
