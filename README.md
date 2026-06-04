@@ -102,13 +102,6 @@ Same prop set as the React version. Snippet slots `leftIcon` /
 @gabrielelr/ds-web-global/tokens/millipiyango.{light,dark}.css
 ```
 
-For temporary upstream patches (e.g. PokerStars pill radius), also
-import:
-
-```ts
-import '@gabrielelr/ds-web-global/tokens-overrides.css';
-```
-
 ## Contributing
 
 ```bash

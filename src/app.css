@@ -20,9 +20,6 @@
 @import "./tokens/millipiyango.light.css";
 @import "./tokens/millipiyango.dark.css";
 
-/* Temporary patches over upstream tokens — see file header. */
-@import "./tokens.overrides.css";
-
 /* Shared component styles — framework-agnostic. */
 @import "./lib/Button.css";
 

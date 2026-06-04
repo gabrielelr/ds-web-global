@@ -1,6 +1,6 @@
 {
   "name": "@gabrielelr/ds-web-global",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Antares design-system components for the web (React + Svelte 5) with multi-brand CSS tokens.",
   "license": "UNLICENSED",
   "type": "module",
@@ -17,7 +17,6 @@
     "dist/svelte",
     "dist/Button.css",
     "src/tokens",
-    "src/tokens.overrides.css",
     "README.md"
   ],
   "main": "./dist/react/react.cjs",
@@ -35,8 +34,7 @@
       "import": "./dist/svelte/svelte.js"
     },
     "./css": "./dist/Button.css",
-    "./tokens/*.css": "./src/tokens/*.css",
-    "./tokens-overrides.css": "./src/tokens.overrides.css"
+    "./tokens/*.css": "./src/tokens/*.css"
   },
   "scripts": {
     "dev": "vite",
