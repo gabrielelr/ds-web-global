@@ -1,0 +1,15 @@
+/* Framework-agnostic styles for the DBOX PageControl composite.
+ * Consumed by both PageControl.svelte and PageControl.tsx.
+ *
+ * Markup contract:
+ *   <div class="db-page-control" data-type="segment|point">
+ *     <span class="db-page-control-item" ...></span>  ×N
+ *   </div>
+ *
+ * The item visual lives in src/lib/PageControlItem/PageControlItem.css. */
+
+.db-page-control {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--page-control-size-gap);
+}

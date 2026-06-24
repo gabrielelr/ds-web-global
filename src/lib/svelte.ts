@@ -5,4 +5,11 @@
  *
  * The consumer must have a Svelte 5 build pipeline (vite-plugin-svelte).
  */
-export { default as Button } from './Button.svelte';
+export { default as Button } from './Button/Button.svelte';
+export { default as ButtonIcon } from './ButtonIcon/ButtonIcon.svelte';
+export { default as Link } from './Link/Link.svelte';
+export { default as PageControlItem } from './PageControlItem/PageControlItem.svelte';
+export { default as PageControl } from './PageControl/PageControl.svelte';
+export { default as SearchBar } from './SearchBar/SearchBar.svelte';
+export { default as BadgeStatus } from './BadgeStatus/BadgeStatus.svelte';
+export { default as Heading } from './Heading/Heading.svelte';

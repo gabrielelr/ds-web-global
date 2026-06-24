@@ -1,0 +1,88 @@
+/* Framework-agnostic styles for the DBOX Heading.
+ * Consumed by both Heading.svelte and Heading.tsx.
+ *
+ * Markup contract:
+ *   <h1 class="db-heading" data-level="d1|d2|h1|h2|h3">
+ *     <span class="db-heading__icon">…icon…</span>  (optional)
+ *     <span class="db-heading__title">Title text</span>
+ *     <span class="db-heading__right">…link|badge|icon…</span>  (optional)
+ *   </h1>
+ *
+ * The wrapper element is configurable (h1/h2/h3/div/p/span) — `data-level`
+ * picks the typography token group, `as` (in the component) picks the
+ * semantic HTML tag.
+ *
+ * Heading has a single color (no state machine): `--heading-color-text` for
+ * text, `--heading-color-icon` for slot icons. */
+
+/* ---------- BASE ---------- */
+.db-heading {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--heading-size-gap);
+  margin: 0; /* reset native h1/h2/h3 margin so layout is controlled by the consumer */
+  color: var(--heading-color-text);
+}
+
+/* ---------- LEVEL → TYPOGRAPHY ---------- */
+.db-heading[data-level="d1"] {
+  font-family: var(--d1-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--d1-font-size);
+  line-height: var(--d1-line-height);
+  font-weight: var(--d1-font-weight);
+}
+.db-heading[data-level="d2"] {
+  font-family: var(--d2-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--d2-font-size);
+  line-height: var(--d2-line-height);
+  font-weight: var(--d2-font-weight);
+}
+.db-heading[data-level="h1"] {
+  font-family: var(--h1-font-family, "Mulish"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--h1-font-size);
+  line-height: var(--h1-line-height);
+  font-weight: var(--h1-font-weight);
+}
+.db-heading[data-level="h2"] {
+  font-family: var(--h2-font-family, "Mulish"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+  font-weight: var(--h2-font-weight);
+}
+.db-heading[data-level="h3"] {
+  font-family: var(--h3-font-family, "Mulish"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--h3-font-size);
+  line-height: var(--h3-line-height);
+  font-weight: var(--h3-font-weight);
+}
+
+/* ---------- LEFT ICON ---------- */
+.db-heading__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--heading-color-icon);
+}
+.db-heading__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ---------- TITLE ---------- */
+.db-heading__title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---------- RIGHT SLOT (link / badge / icon) ---------- */
+.db-heading__right {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  color: var(--heading-color-icon);
+}

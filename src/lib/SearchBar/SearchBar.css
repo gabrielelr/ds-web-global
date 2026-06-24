@@ -1,0 +1,100 @@
+/* Framework-agnostic styles for the DBOX SearchBar.
+ * Consumed by both SearchBar.svelte and SearchBar.tsx.
+ *
+ * Markup contract:
+ *   <div class="db-searchbar" [data-force-state="active"]>
+ *     <span class="db-searchbar__icon">…magnifying-glass…</span>
+ *     <input class="db-searchbar__input" type="search" … />
+ *     <button class="db-searchbar__clear">…X…</button>  (optional)
+ *   </div>
+ *
+ * Active border is driven by `:focus-within` on the wrapper, so as long as
+ * the inner input is focused the bar shows the active outline without any
+ * extra wiring. `data-force-state="active"` is a manual override for
+ * snapshots / Storybook. */
+
+.db-searchbar {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--search-bar-size-gap);
+
+  height: var(--search-bar-size-height);
+  padding: 0 var(--search-bar-size-padding-horizontal);
+  width: 100%;
+  min-width: 112px;
+
+  background-color: var(--search-bar-color-bg);
+  border: var(--search-bar-size-border-width) solid var(--search-bar-color-border-default);
+  border-radius: var(--search-bar-size-border-radius);
+  color: var(--search-bar-color-text-default);
+
+  font-family: var(--p-lead-regular-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--p-lead-regular-font-size);
+  line-height: var(--p-lead-regular-line-height);
+  font-weight: var(--p-lead-regular-font-weight);
+
+  transition: border-color 120ms ease;
+}
+
+.db-searchbar:focus-within,
+.db-searchbar[data-force-state="active"] {
+  border-color: var(--search-bar-color-border-active);
+}
+
+/* ---------- LEFT ICON ---------- */
+.db-searchbar__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--search-bar-color-icon);
+}
+.db-searchbar__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ---------- INPUT ---------- */
+.db-searchbar__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+.db-searchbar__input::placeholder {
+  color: var(--search-bar-color-text-placeholder);
+  opacity: 1;
+}
+.db-searchbar__input::-webkit-search-cancel-button {
+  /* Hide the native cancel button on WebKit — we provide our own. */
+  appearance: none;
+}
+
+/* ---------- CLEAR BUTTON ---------- */
+.db-searchbar__clear {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-right: -8px; /* tighten against the right padding to match Figma layout */
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  color: var(--search-bar-color-icon);
+  cursor: pointer;
+}
+.db-searchbar__clear svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}

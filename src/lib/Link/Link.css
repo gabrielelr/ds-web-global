@@ -1,0 +1,118 @@
+/* Framework-agnostic styles for the DBOX Link.
+ * Consumed by both Link.svelte and Link.tsx.
+ *
+ * Markup contract:
+ *   <a class="db-link"
+ *      href="..."
+ *      data-appearance="neutral|brand"
+ *      data-size="md|sm"
+ *      [data-force-state="hover|disabled"]
+ *      [aria-disabled="true"]>
+ *     <span class="db-link__icon">…icon…</span>
+ *     <span class="db-link__label">Link</span>
+ *     <span class="db-link__icon">…icon…</span>
+ *   </a>
+ *
+ * The visual look is driven by two local CSS variables — --text, --icon —
+ * set per appearance × state. The base rule paints with whatever those
+ * locals currently hold.
+ *
+ * Notes:
+ * - There is no `pressed` state in the Antares Link spec — only default,
+ *   hover, disabled.
+ * - No focus state is styled here. Focus is handled by the consumer
+ *   (browser default outline or an app-level focus ring). */
+
+/* ---------- BASE ---------- */
+.db-link {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--link-size-gap);
+
+  color: var(--text, currentColor);
+  font-family: var(--link-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--link-font-size);
+  line-height: var(--link-line-height);
+  font-weight: var(--link-font-weight);
+
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+
+.db-link[data-size="sm"] {
+  font-family: var(--link-micro-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--link-micro-font-size);
+  line-height: var(--link-micro-line-height);
+  font-weight: var(--link-micro-font-weight);
+}
+
+.db-link[aria-disabled="true"],
+.db-link[data-force-state="disabled"] {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------- LABEL ---------- */
+.db-link__label {
+  display: inline-flex;
+  align-items: center;
+  word-break: break-word;
+}
+
+/* ---------- ICONS ---------- */
+.db-link__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--link-size-icon);
+  height: var(--link-size-icon);
+  color: var(--icon, currentColor);
+}
+.db-link__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==================================================================
+ * Appearance × State → local CSS variables.
+ * State selectors use the
+ *   `:hover:not([aria-disabled="true"]):not([data-force-state])`
+ * + `[data-force-state="X"]` shape to support both real and forced states.
+ * ================================================================== */
+
+/* ---------- NEUTRAL ---------- */
+.db-link[data-appearance="neutral"] {
+  --text: var(--link-color-neutral-text-default);
+  --icon: var(--link-color-neutral-icon-default);
+}
+.db-link[data-appearance="neutral"]:hover:not([aria-disabled="true"]):not([data-force-state]),
+.db-link[data-appearance="neutral"][data-force-state="hover"] {
+  --text: var(--link-color-neutral-text-hover);
+  --icon: var(--link-color-neutral-icon-hover);
+}
+.db-link[data-appearance="neutral"][aria-disabled="true"],
+.db-link[data-appearance="neutral"][data-force-state="disabled"] {
+  --text: var(--link-color-neutral-text-disabled);
+  --icon: var(--link-color-neutral-icon-disabled);
+}
+
+/* ---------- BRAND ---------- */
+.db-link[data-appearance="brand"] {
+  --text: var(--link-color-brand-text-default);
+  --icon: var(--link-color-brand-icon-default);
+}
+.db-link[data-appearance="brand"]:hover:not([aria-disabled="true"]):not([data-force-state]),
+.db-link[data-appearance="brand"][data-force-state="hover"] {
+  --text: var(--link-color-brand-text-hover);
+  --icon: var(--link-color-brand-icon-hover);
+}
+.db-link[data-appearance="brand"][aria-disabled="true"],
+.db-link[data-appearance="brand"][data-force-state="disabled"] {
+  --text: var(--link-color-brand-text-disabled);
+  --icon: var(--link-color-brand-icon-disabled);
+}

@@ -1,0 +1,31 @@
+/* Framework-agnostic styles for the DBOX PageControlItem atom.
+ * Consumed by both PageControlItem.svelte and PageControlItem.tsx.
+ *
+ * Markup contract:
+ *   <span class="db-page-control-item"
+ *         data-type="segment|point"
+ *         [data-active="true"]></span>
+ *
+ * Purely presentational — no interaction states. The parent PageControl
+ * decides which item is active and renders them in a row with gap. */
+
+.db-page-control-item {
+  display: inline-block;
+  height: var(--page-control-page-control-item-size-height);
+  border-radius: var(--page-control-page-control-item-size-border-radius);
+  background-color: var(--page-control-page-control-item-color-bg-default);
+  transition: background-color 120ms ease;
+}
+
+.db-page-control-item[data-type="segment"] {
+  width: var(--page-control-page-control-item-size-segment-width);
+}
+
+/* `point` is a square dot with side = the height token. */
+.db-page-control-item[data-type="point"] {
+  width: var(--page-control-page-control-item-size-height);
+}
+
+.db-page-control-item[data-active="true"] {
+  background-color: var(--page-control-page-control-item-color-bg-active);
+}

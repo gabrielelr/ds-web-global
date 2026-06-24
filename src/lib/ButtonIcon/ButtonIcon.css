@@ -1,0 +1,222 @@
+/* Framework-agnostic styles for the DBOX ButtonIcon.
+ * Consumed by both ButtonIcon.svelte and ButtonIcon.tsx.
+ *
+ * Standalone component — does NOT depend on .db-btn. Shares only the
+ * Antares design tokens (--button-color-* and --button-size-*) with Button.
+ *
+ * Markup contract:
+ *   <button class="db-icon-btn"
+ *           data-appearance="brand|registration"
+ *           data-hierarchy="primary|secondary|ghost"
+ *           data-size="md|sm"
+ *           [data-force-state="hover|pressed|disabled"]
+ *           [disabled]>
+ *     <span class="db-icon-btn__icon">…icon…</span>
+ *   </button>
+ *
+ * Visuals are driven by four local CSS variables — --bg, --text, --icon,
+ * --border — set per appearance × hierarchy × state. The base rule paints
+ * with whatever those locals currently hold.
+ *
+ * Notes:
+ * - `registration` ships only `primary` and `secondary` — same Antares
+ *   constraint as Button.
+ * - No focus state is styled here; focus is handled by the consumer. */
+
+/* ---------- BASE ---------- */
+.db-icon-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--button-size-md-height);
+  height: var(--button-size-md-height);
+  padding: 0;
+  border: var(--button-size-md-border-width-base) solid var(--border, transparent);
+  border-radius: var(--button-size-md-border-radius);
+  background-color: var(--bg, transparent);
+  color: var(--text, currentColor);
+
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+  user-select: none;
+}
+
+.db-icon-btn[data-size="sm"] {
+  width: var(--button-size-sm-height);
+  height: var(--button-size-sm-height);
+  border-width: var(--button-size-sm-border-width-base);
+  border-radius: var(--button-size-sm-border-radius);
+}
+
+.db-icon-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* ---------- ICON ---------- */
+.db-icon-btn__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--button-size-md-icon-size);
+  height: var(--button-size-md-icon-size);
+  color: var(--icon, currentColor);
+}
+.db-icon-btn[data-size="sm"] .db-icon-btn__icon {
+  width: var(--button-size-sm-icon-size);
+  height: var(--button-size-sm-icon-size);
+}
+.db-icon-btn__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==================================================================
+ * Appearance × Hierarchy × State → local CSS variables.
+ * Mirrors the structure used by .db-btn so the same tokens drive both
+ * components. State selectors use the
+ * `:hover:not(:disabled):not([data-force-state])` + `[data-force-state="X"]`
+ * shape to support both real and forced states.
+ * ================================================================== */
+
+/* ---------- BRAND × PRIMARY ---------- */
+.db-icon-btn[data-appearance="brand"][data-hierarchy="primary"] {
+  --bg: var(--button-color-brand-primary-bg-default);
+  --text: var(--button-color-brand-primary-text-default);
+  --icon: var(--button-color-brand-primary-icon-default);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="primary"]:hover:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="brand"][data-hierarchy="primary"][data-force-state="hover"] {
+  --bg: var(--button-color-brand-primary-bg-hover);
+  --text: var(--button-color-brand-primary-text-hover);
+  --icon: var(--button-color-brand-primary-icon-hover);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="primary"]:active:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="brand"][data-hierarchy="primary"][data-force-state="pressed"] {
+  --bg: var(--button-color-brand-primary-bg-pressed);
+  --text: var(--button-color-brand-primary-text-pressed);
+  --icon: var(--button-color-brand-primary-icon-pressed);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="primary"]:disabled,
+.db-icon-btn[data-appearance="brand"][data-hierarchy="primary"][data-force-state="disabled"] {
+  --bg: var(--button-color-brand-primary-bg-disabled);
+  --border: var(--button-color-brand-primary-border-disabled);
+  --text: var(--button-color-brand-primary-text-disabled);
+  --icon: var(--button-color-brand-primary-icon-disabled);
+}
+
+/* ---------- BRAND × SECONDARY (always has visible border) ---------- */
+.db-icon-btn[data-appearance="brand"][data-hierarchy="secondary"] {
+  --bg: var(--button-color-brand-secondary-bg-default);
+  --border: var(--button-color-brand-secondary-border-default);
+  --text: var(--button-color-brand-secondary-text-default);
+  --icon: var(--button-color-brand-secondary-icon-default);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="secondary"]:hover:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="brand"][data-hierarchy="secondary"][data-force-state="hover"] {
+  --bg: var(--button-color-brand-secondary-bg-hover);
+  --border: var(--button-color-brand-secondary-border-hover);
+  --text: var(--button-color-brand-secondary-text-hover);
+  --icon: var(--button-color-brand-secondary-icon-hover);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="secondary"]:active:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="brand"][data-hierarchy="secondary"][data-force-state="pressed"] {
+  --bg: var(--button-color-brand-secondary-bg-pressed);
+  --border: var(--button-color-brand-secondary-border-pressed);
+  --text: var(--button-color-brand-secondary-text-pressed);
+  --icon: var(--button-color-brand-secondary-icon-pressed);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="secondary"]:disabled,
+.db-icon-btn[data-appearance="brand"][data-hierarchy="secondary"][data-force-state="disabled"] {
+  --bg: var(--button-color-brand-secondary-bg-disabled);
+  --border: var(--button-color-brand-secondary-border-disabled);
+  --text: var(--button-color-brand-secondary-text-disabled);
+  --icon: var(--button-color-brand-secondary-icon-disabled);
+}
+
+/* ---------- BRAND × GHOST (transparent default) ---------- */
+.db-icon-btn[data-appearance="brand"][data-hierarchy="ghost"] {
+  --bg: var(--button-color-brand-ghost-bg-default);
+  --text: var(--button-color-brand-ghost-text-default);
+  --icon: var(--button-color-brand-ghost-icon-default);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="ghost"]:hover:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="brand"][data-hierarchy="ghost"][data-force-state="hover"] {
+  --bg: var(--button-color-brand-ghost-bg-hover);
+  --text: var(--button-color-brand-ghost-text-hover);
+  --icon: var(--button-color-brand-ghost-icon-hover);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="ghost"]:active:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="brand"][data-hierarchy="ghost"][data-force-state="pressed"] {
+  --bg: var(--button-color-brand-ghost-bg-pressed);
+  --text: var(--button-color-brand-ghost-text-pressed);
+  --icon: var(--button-color-brand-ghost-icon-pressed);
+}
+.db-icon-btn[data-appearance="brand"][data-hierarchy="ghost"]:disabled,
+.db-icon-btn[data-appearance="brand"][data-hierarchy="ghost"][data-force-state="disabled"] {
+  --bg: var(--button-color-brand-ghost-bg-disabled);
+  --border: var(--button-color-brand-ghost-border-disabled);
+  --text: var(--button-color-brand-ghost-text-disabled);
+  --icon: var(--button-color-brand-ghost-icon-disabled);
+}
+
+/* ---------- REGISTRATION × PRIMARY ---------- */
+.db-icon-btn[data-appearance="registration"][data-hierarchy="primary"] {
+  --bg: var(--button-color-registration-primary-bg-default);
+  --text: var(--button-color-registration-primary-text-default);
+  --icon: var(--button-color-registration-primary-icon-default);
+}
+.db-icon-btn[data-appearance="registration"][data-hierarchy="primary"]:hover:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="registration"][data-hierarchy="primary"][data-force-state="hover"] {
+  --bg: var(--button-color-registration-primary-bg-hover);
+  --text: var(--button-color-registration-primary-text-hover);
+  --icon: var(--button-color-registration-primary-icon-hover);
+}
+.db-icon-btn[data-appearance="registration"][data-hierarchy="primary"]:active:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="registration"][data-hierarchy="primary"][data-force-state="pressed"] {
+  --bg: var(--button-color-registration-primary-bg-pressed);
+  --text: var(--button-color-registration-primary-text-pressed);
+  --icon: var(--button-color-registration-primary-icon-pressed);
+}
+.db-icon-btn[data-appearance="registration"][data-hierarchy="primary"]:disabled,
+.db-icon-btn[data-appearance="registration"][data-hierarchy="primary"][data-force-state="disabled"] {
+  --bg: var(--button-color-registration-primary-bg-disabled);
+  --border: var(--button-color-registration-primary-border-disabled);
+  --text: var(--button-color-registration-primary-text-disabled);
+  --icon: var(--button-color-registration-primary-icon-disabled);
+}
+
+/* ---------- REGISTRATION × SECONDARY (always has visible border) ---------- */
+.db-icon-btn[data-appearance="registration"][data-hierarchy="secondary"] {
+  --bg: var(--button-color-registration-secondary-bg-default);
+  --border: var(--button-color-registration-secondary-border-default);
+  --text: var(--button-color-registration-secondary-text-default);
+  --icon: var(--button-color-registration-secondary-icon-default);
+}
+.db-icon-btn[data-appearance="registration"][data-hierarchy="secondary"]:hover:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="registration"][data-hierarchy="secondary"][data-force-state="hover"] {
+  --bg: var(--button-color-registration-secondary-bg-hover);
+  --border: var(--button-color-registration-secondary-border-hover);
+  --text: var(--button-color-registration-secondary-text-hover);
+  --icon: var(--button-color-registration-secondary-icon-hover);
+}
+.db-icon-btn[data-appearance="registration"][data-hierarchy="secondary"]:active:not(:disabled):not([data-force-state]),
+.db-icon-btn[data-appearance="registration"][data-hierarchy="secondary"][data-force-state="pressed"] {
+  --bg: var(--button-color-registration-secondary-bg-pressed);
+  --border: var(--button-color-registration-secondary-border-pressed);
+  --text: var(--button-color-registration-secondary-text-pressed);
+  --icon: var(--button-color-registration-secondary-icon-pressed);
+}
+.db-icon-btn[data-appearance="registration"][data-hierarchy="secondary"]:disabled,
+.db-icon-btn[data-appearance="registration"][data-hierarchy="secondary"][data-force-state="disabled"] {
+  --bg: var(--button-color-registration-secondary-bg-disabled);
+  --border: var(--button-color-registration-secondary-border-disabled);
+  --text: var(--button-color-registration-secondary-text-disabled);
+  --icon: var(--button-color-registration-secondary-icon-disabled);
+}

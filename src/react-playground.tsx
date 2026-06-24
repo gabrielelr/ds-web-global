@@ -8,7 +8,7 @@ import {
   type ButtonHierarchy,
   type ButtonSize,
   type ButtonState
-} from './lib/Button';
+} from './lib/Button/Button';
 
 const APPEARANCES: ButtonAppearance[] = ['brand', 'registration'];
 const HIERARCHIES_BY_APPEARANCE: Record<ButtonAppearance, ButtonHierarchy[]> = {

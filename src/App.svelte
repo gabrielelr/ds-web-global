@@ -1,5 +1,5 @@
 <script>
-  import Button from './lib/Button.svelte'
+  import Button from './lib/Button/Button.svelte'
 </script>
 
 <main class="min-h-screen bg-neutral-50 text-neutral-900 p-8 flex flex-col gap-8">
