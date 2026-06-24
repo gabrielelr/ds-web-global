@@ -21,7 +21,14 @@
 @import "./tokens/millipiyango.dark.css";
 
 /* Shared component styles — framework-agnostic. */
-@import "./lib/Button.css";
+@import "./lib/Button/Button.css";
+@import "./lib/ButtonIcon/ButtonIcon.css";
+@import "./lib/Link/Link.css";
+@import "./lib/PageControlItem/PageControlItem.css";
+@import "./lib/PageControl/PageControl.css";
+@import "./lib/SearchBar/SearchBar.css";
+@import "./lib/BadgeStatus/BadgeStatus.css";
+@import "./lib/Heading/Heading.css";
 
 @import "tailwindcss";
 

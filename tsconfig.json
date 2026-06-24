@@ -18,5 +18,15 @@
     "allowJs": false,
     "checkJs": false
   },
-  "include": ["src/lib/Button.tsx", "src/lib/react.ts"]
+  "include": [
+    "src/lib/Button/Button.tsx",
+    "src/lib/ButtonIcon/ButtonIcon.tsx",
+    "src/lib/Link/Link.tsx",
+    "src/lib/PageControlItem/PageControlItem.tsx",
+    "src/lib/PageControl/PageControl.tsx",
+    "src/lib/SearchBar/SearchBar.tsx",
+    "src/lib/BadgeStatus/BadgeStatus.tsx",
+    "src/lib/Heading/Heading.tsx",
+    "src/lib/react.ts"
+  ]
 }

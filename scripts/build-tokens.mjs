@@ -170,6 +170,10 @@ async function build({ brand, theme }) {
             filter: (token) => {
               const root = token.path[0];
               if (root === 'buttonGroup') return true;
+              if (root === 'pageControl') return true;
+              if (root === 'searchBar') return true;
+              if (root === 'badgeStatus') return true;
+              if (root === 'heading') return true;
               if (root === 'button' || root === 'link') {
                 // Skip composite-typography parent tokens — they have no
                 // useful CSS representation; the leaf tokens (fontSize,
@@ -177,8 +181,19 @@ async function build({ brand, theme }) {
                 const last = token.path[token.path.length - 1];
                 const composite = ['fontFamily', 'fontWeight', 'fontSize', 'lineHeight'];
                 if (composite.includes(last)) return true;
-                // For button.* (non-typography paths), let the rest through.
-                return root === 'button';
+                // For non-typography paths (color, size), let everything through.
+                return true;
+              }
+              // Typography-only roots: emit only composite leaves
+              // (fontFamily, fontWeight, fontSize, lineHeight). Used by
+              // components that need a global text style — e.g. SearchBar
+              // consumes p.lead.regular.*; BadgeStatus consumes caption.bold.*;
+              // Heading consumes h1/h2/h3/d1/d2.*.
+              const typographyRoots = ['p', 'caption', 'd1', 'd2', 'h1', 'h2', 'h3'];
+              if (typographyRoots.includes(root)) {
+                const last = token.path[token.path.length - 1];
+                const composite = ['fontFamily', 'fontWeight', 'fontSize', 'lineHeight'];
+                return composite.includes(last);
               }
               return false;
             },
@@ -207,8 +222,21 @@ async function build({ brand, theme }) {
       if (last === 'fontWeight') return false;
       // Typography metrics: fontSize, lineHeight.
       if (last === 'fontSize' || last === 'lineHeight') return true;
-      // Component-size tokens (button.size.*).
-      return token.path[0] === 'button' && token.path[1] === 'size';
+      // Component-size tokens. For button/link the size group sits directly
+      // under the root; for pageControl it can also be nested under
+      // `pageControlItem`, so check for `size` anywhere in the path.
+      const root = token.path[0];
+      if (
+        root === 'button' ||
+        root === 'link' ||
+        root === 'searchBar' ||
+        root === 'badgeStatus' ||
+        root === 'heading'
+      ) {
+        return token.path[1] === 'size';
+      }
+      if (root === 'pageControl') return token.path.includes('size');
+      return false;
     },
     transform: (token) => `${token.$value ?? token.value}px`
   });

@@ -15,7 +15,7 @@
   "files": [
     "dist/react",
     "dist/svelte",
-    "dist/Button.css",
+    "dist/styles.css",
     "src/tokens",
     "README.md"
   ],
@@ -33,7 +33,7 @@
       "svelte": "./dist/svelte/svelte.js",
       "import": "./dist/svelte/svelte.js"
     },
-    "./css": "./dist/Button.css",
+    "./css": "./dist/styles.css",
     "./tokens/*.css": "./src/tokens/*.css"
   },
   "scripts": {
@@ -43,7 +43,7 @@
     "build:tokens": "node scripts/build-tokens.mjs",
     "build:lib:react": "tsup",
     "build:lib:svelte": "svelte-package -i src/lib -o dist/svelte && node scripts/clean-svelte-dist.mjs",
-    "build:lib:css": "cp src/lib/Button.css dist/Button.css",
+    "build:lib:css": "cat src/lib/Button/Button.css src/lib/ButtonIcon/ButtonIcon.css src/lib/Link/Link.css src/lib/PageControlItem/PageControlItem.css src/lib/PageControl/PageControl.css src/lib/SearchBar/SearchBar.css src/lib/BadgeStatus/BadgeStatus.css src/lib/Heading/Heading.css > dist/styles.css",
     "build:lib": "npm run build:lib:react && npm run build:lib:svelte && npm run build:lib:css",
     "prepublishOnly": "npm run build:lib",
     "storybook": "storybook dev -p 6006",
