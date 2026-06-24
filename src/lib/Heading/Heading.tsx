@@ -65,15 +65,15 @@ export const Heading = React.forwardRef<HTMLElement, HeadingProps>(function Head
   return (
     <Tag
       ref={ref}
-      className="db-heading"
+      className="antares-heading"
       data-level={level}
       {...rest}
     >
       {showLeftIcon && (
-        <span className="db-heading__icon">{defaultIcon}</span>
+        <span className="antares-heading__icon">{defaultIcon}</span>
       )}
-      <span className="db-heading__title">{text}</span>
-      {right && <span className="db-heading__right">{right}</span>}
+      <span className="antares-heading__title">{text}</span>
+      {right && <span className="antares-heading__right">{right}</span>}
     </Tag>
   );
 });

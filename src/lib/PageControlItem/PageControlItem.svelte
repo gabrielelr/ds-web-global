@@ -17,7 +17,7 @@
 </script>
 
 <span
-  class="db-page-control-item"
+  class="antares-page-control-item"
   data-type={type}
   data-active={active ? 'true' : null}
   {...rest}

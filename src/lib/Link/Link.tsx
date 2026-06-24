@@ -69,7 +69,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link
   return (
     <a
       ref={ref}
-      className="db-link"
+      className="antares-link"
       data-appearance={appearance}
       data-size={size}
       data-force-state={state !== 'default' ? state : undefined}
@@ -78,13 +78,13 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link
       {...rest}
     >
       {showLeftIcon && (
-        <span className="db-link__icon">
+        <span className="antares-link__icon">
           {leftIcon ?? defaultIcon}
         </span>
       )}
-      <span className="db-link__label">{children ?? label}</span>
+      <span className="antares-link__label">{children ?? label}</span>
       {showRightIcon && (
-        <span className="db-link__icon">
+        <span className="antares-link__icon">
           {rightIcon ?? defaultIcon}
         </span>
       )}

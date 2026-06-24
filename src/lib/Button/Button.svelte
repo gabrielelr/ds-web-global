@@ -3,7 +3,7 @@
    * Button — Svelte 5 markup.
    *
    * Visual styles live in ./Button.css (imported globally via src/app.css).
-   * The component pipes its props through to `<button class="db-btn">` data
+   * The component pipes its props through to `<button class="antares-btn">` data
    * attributes; the CSS does the rest. Same contract as Button.tsx.
    *
    * @typedef {'brand' | 'registration'} Appearance
@@ -49,7 +49,7 @@
 
 <button
   type="button"
-  class="db-btn"
+  class="antares-btn"
   data-appearance={appearance}
   data-hierarchy={hierarchy}
   data-size={size}
@@ -58,17 +58,17 @@
   {...rest}
 >
   {#if showLeftIcon}
-    <span class="db-btn__icon db-btn__icon--left">
+    <span class="antares-btn__icon antares-btn__icon--left">
       {#if leftIcon}{@render leftIcon()}{:else}{@render defaultIcon()}{/if}
     </span>
   {/if}
 
-  <span class="db-btn__label">
+  <span class="antares-btn__label">
     {#if children}{@render children()}{:else}{label}{/if}
   </span>
 
   {#if showRightIcon}
-    <span class="db-btn__icon db-btn__icon--right">
+    <span class="antares-btn__icon antares-btn__icon--right">
       {#if rightIcon}{@render rightIcon()}{:else}{@render defaultIcon()}{/if}
     </span>
   {/if}

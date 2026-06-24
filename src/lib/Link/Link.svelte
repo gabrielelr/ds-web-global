@@ -3,7 +3,7 @@
    * Link — Svelte 5 markup.
    *
    * Visual styles live in ./Link.css (imported globally via src/app.css).
-   * Renders as an `<a>` with the `db-link` class; same contract as Link.tsx.
+   * Renders as an `<a>` with the `antares-link` class; same contract as Link.tsx.
    *
    * When `disabled` is true (or `state === 'disabled'`), the anchor drops its
    * href, gets `aria-disabled="true"`, and the CSS turns off pointer events.
@@ -45,7 +45,7 @@
 {/snippet}
 
 <a
-  class="db-link"
+  class="antares-link"
   data-appearance={appearance}
   data-size={size}
   data-force-state={state !== 'default' ? state : null}
@@ -54,17 +54,17 @@
   {...rest}
 >
   {#if showLeftIcon}
-    <span class="db-link__icon">
+    <span class="antares-link__icon">
       {#if leftIcon}{@render leftIcon()}{:else}{@render defaultIcon()}{/if}
     </span>
   {/if}
 
-  <span class="db-link__label">
+  <span class="antares-link__label">
     {#if children}{@render children()}{:else}{label}{/if}
   </span>
 
   {#if showRightIcon}
-    <span class="db-link__icon">
+    <span class="antares-link__icon">
       {#if rightIcon}{@render rightIcon()}{:else}{@render defaultIcon()}{/if}
     </span>
   {/if}

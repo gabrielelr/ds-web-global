@@ -2,16 +2,16 @@
  * Consumed by both BadgeStatus.svelte and BadgeStatus.tsx.
  *
  * Markup contract:
- *   <span class="db-badge-status"
+ *   <span class="antares-badge-status"
  *         data-status="success|failed|warning|neutral"
  *         data-appearance="filled|default|subtle">
- *     <span class="db-badge-status__icon">…icon…</span>  (optional)
- *     <span class="db-badge-status__label">Label</span>
+ *     <span class="antares-badge-status__icon">…icon…</span>  (optional)
+ *     <span class="antares-badge-status__label">Label</span>
  *   </span>
  *
- * The visual look is driven by four local CSS variables — --bg, --text,
- * --icon, --border — set per status × appearance. The base rule paints
- * with whatever those locals currently hold. `filled` doesn't set --border,
+ * The visual look is driven by four local CSS variables — --_bg-color, --_text-color,
+ * --_icon-color, --_border-color — set per status × appearance. The base rule paints
+ * with whatever those locals currently hold. `filled` doesn't set --_border-color,
  * so the rule falls back to `transparent` on that variant.
  *
  * Note: only horizontal padding is applied. The vertical size is fixed via
@@ -20,7 +20,7 @@
  * is rendered. */
 
 /* ---------- BASE ---------- */
-.db-badge-status {
+.antares-badge-status {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -29,10 +29,10 @@
 
   height: var(--badge-status-size-height);
   padding-inline: var(--badge-status-size-padding);
-  border: var(--badge-status-size-border-width) solid var(--border, transparent);
+  border: var(--badge-status-size-border-width) solid var(--_border-color, transparent);
   border-radius: var(--badge-status-size-border-radius);
-  background-color: var(--bg, transparent);
-  color: var(--text, currentColor);
+  background-color: var(--_bg-color, transparent);
+  color: var(--_text-color, currentColor);
 
   font-family: var(--caption-bold-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--caption-bold-font-size);
@@ -44,23 +44,23 @@
 }
 
 /* ---------- ICON ---------- */
-.db-badge-status__icon {
+.antares-badge-status__icon {
   display: inline-flex;
   flex: none;
   align-items: center;
   justify-content: center;
   width: 16px;
   height: 16px;
-  color: var(--icon, currentColor);
+  color: var(--_icon-color, currentColor);
 }
-.db-badge-status__icon svg {
+.antares-badge-status__icon svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
 /* ---------- LABEL ---------- */
-.db-badge-status__label {
+.antares-badge-status__label {
   display: inline-flex;
   align-items: center;
 }
@@ -72,77 +72,77 @@
  * ================================================================== */
 
 /* ---------- SUCCESS ---------- */
-.db-badge-status[data-status="success"][data-appearance="filled"] {
-  --bg: var(--badge-status-color-success-filled-bg);
-  --text: var(--badge-status-color-success-filled-text);
-  --icon: var(--badge-status-color-success-filled-icon);
+.antares-badge-status[data-status="success"][data-appearance="filled"] {
+  --_bg-color: var(--badge-status-color-success-filled-bg);
+  --_text-color: var(--badge-status-color-success-filled-text);
+  --_icon-color: var(--badge-status-color-success-filled-icon);
 }
-.db-badge-status[data-status="success"][data-appearance="default"] {
-  --bg: var(--badge-status-color-success-default-bg);
-  --border: var(--badge-status-color-success-default-border);
-  --text: var(--badge-status-color-success-default-text);
-  --icon: var(--badge-status-color-success-default-icon);
+.antares-badge-status[data-status="success"][data-appearance="default"] {
+  --_bg-color: var(--badge-status-color-success-default-bg);
+  --_border-color: var(--badge-status-color-success-default-border);
+  --_text-color: var(--badge-status-color-success-default-text);
+  --_icon-color: var(--badge-status-color-success-default-icon);
 }
-.db-badge-status[data-status="success"][data-appearance="subtle"] {
-  --bg: var(--badge-status-color-success-subtle-bg);
-  --border: var(--badge-status-color-success-subtle-border);
-  --text: var(--badge-status-color-success-subtle-text);
-  --icon: var(--badge-status-color-success-subtle-icon);
+.antares-badge-status[data-status="success"][data-appearance="subtle"] {
+  --_bg-color: var(--badge-status-color-success-subtle-bg);
+  --_border-color: var(--badge-status-color-success-subtle-border);
+  --_text-color: var(--badge-status-color-success-subtle-text);
+  --_icon-color: var(--badge-status-color-success-subtle-icon);
 }
 
 /* ---------- FAILED ---------- */
-.db-badge-status[data-status="failed"][data-appearance="filled"] {
-  --bg: var(--badge-status-color-failed-filled-bg);
-  --text: var(--badge-status-color-failed-filled-text);
-  --icon: var(--badge-status-color-failed-filled-icon);
+.antares-badge-status[data-status="failed"][data-appearance="filled"] {
+  --_bg-color: var(--badge-status-color-failed-filled-bg);
+  --_text-color: var(--badge-status-color-failed-filled-text);
+  --_icon-color: var(--badge-status-color-failed-filled-icon);
 }
-.db-badge-status[data-status="failed"][data-appearance="default"] {
-  --bg: var(--badge-status-color-failed-default-bg);
-  --border: var(--badge-status-color-failed-default-border);
-  --text: var(--badge-status-color-failed-default-text);
-  --icon: var(--badge-status-color-failed-default-icon);
+.antares-badge-status[data-status="failed"][data-appearance="default"] {
+  --_bg-color: var(--badge-status-color-failed-default-bg);
+  --_border-color: var(--badge-status-color-failed-default-border);
+  --_text-color: var(--badge-status-color-failed-default-text);
+  --_icon-color: var(--badge-status-color-failed-default-icon);
 }
-.db-badge-status[data-status="failed"][data-appearance="subtle"] {
-  --bg: var(--badge-status-color-failed-subtle-bg);
-  --border: var(--badge-status-color-failed-subtle-border);
-  --text: var(--badge-status-color-failed-subtle-text);
-  --icon: var(--badge-status-color-failed-subtle-icon);
+.antares-badge-status[data-status="failed"][data-appearance="subtle"] {
+  --_bg-color: var(--badge-status-color-failed-subtle-bg);
+  --_border-color: var(--badge-status-color-failed-subtle-border);
+  --_text-color: var(--badge-status-color-failed-subtle-text);
+  --_icon-color: var(--badge-status-color-failed-subtle-icon);
 }
 
 /* ---------- WARNING ---------- */
-.db-badge-status[data-status="warning"][data-appearance="filled"] {
-  --bg: var(--badge-status-color-warning-filled-bg);
-  --text: var(--badge-status-color-warning-filled-text);
-  --icon: var(--badge-status-color-warning-filled-icon);
+.antares-badge-status[data-status="warning"][data-appearance="filled"] {
+  --_bg-color: var(--badge-status-color-warning-filled-bg);
+  --_text-color: var(--badge-status-color-warning-filled-text);
+  --_icon-color: var(--badge-status-color-warning-filled-icon);
 }
-.db-badge-status[data-status="warning"][data-appearance="default"] {
-  --bg: var(--badge-status-color-warning-default-bg);
-  --border: var(--badge-status-color-warning-default-border);
-  --text: var(--badge-status-color-warning-default-text);
-  --icon: var(--badge-status-color-warning-default-icon);
+.antares-badge-status[data-status="warning"][data-appearance="default"] {
+  --_bg-color: var(--badge-status-color-warning-default-bg);
+  --_border-color: var(--badge-status-color-warning-default-border);
+  --_text-color: var(--badge-status-color-warning-default-text);
+  --_icon-color: var(--badge-status-color-warning-default-icon);
 }
-.db-badge-status[data-status="warning"][data-appearance="subtle"] {
-  --bg: var(--badge-status-color-warning-subtle-bg);
-  --border: var(--badge-status-color-warning-subtle-border);
-  --text: var(--badge-status-color-warning-subtle-text);
-  --icon: var(--badge-status-color-warning-subtle-icon);
+.antares-badge-status[data-status="warning"][data-appearance="subtle"] {
+  --_bg-color: var(--badge-status-color-warning-subtle-bg);
+  --_border-color: var(--badge-status-color-warning-subtle-border);
+  --_text-color: var(--badge-status-color-warning-subtle-text);
+  --_icon-color: var(--badge-status-color-warning-subtle-icon);
 }
 
 /* ---------- NEUTRAL ---------- */
-.db-badge-status[data-status="neutral"][data-appearance="filled"] {
-  --bg: var(--badge-status-color-neutral-filled-bg);
-  --text: var(--badge-status-color-neutral-filled-text);
-  --icon: var(--badge-status-color-neutral-filled-icon);
+.antares-badge-status[data-status="neutral"][data-appearance="filled"] {
+  --_bg-color: var(--badge-status-color-neutral-filled-bg);
+  --_text-color: var(--badge-status-color-neutral-filled-text);
+  --_icon-color: var(--badge-status-color-neutral-filled-icon);
 }
-.db-badge-status[data-status="neutral"][data-appearance="default"] {
-  --bg: var(--badge-status-color-neutral-default-bg);
-  --border: var(--badge-status-color-neutral-default-border);
-  --text: var(--badge-status-color-neutral-default-text);
-  --icon: var(--badge-status-color-neutral-default-icon);
+.antares-badge-status[data-status="neutral"][data-appearance="default"] {
+  --_bg-color: var(--badge-status-color-neutral-default-bg);
+  --_border-color: var(--badge-status-color-neutral-default-border);
+  --_text-color: var(--badge-status-color-neutral-default-text);
+  --_icon-color: var(--badge-status-color-neutral-default-icon);
 }
-.db-badge-status[data-status="neutral"][data-appearance="subtle"] {
-  --bg: var(--badge-status-color-neutral-subtle-bg);
-  --border: var(--badge-status-color-neutral-subtle-border);
-  --text: var(--badge-status-color-neutral-subtle-text);
-  --icon: var(--badge-status-color-neutral-subtle-icon);
+.antares-badge-status[data-status="neutral"][data-appearance="subtle"] {
+  --_bg-color: var(--badge-status-color-neutral-subtle-bg);
+  --_border-color: var(--badge-status-color-neutral-subtle-border);
+  --_text-color: var(--badge-status-color-neutral-subtle-text);
+  --_icon-color: var(--badge-status-color-neutral-subtle-icon);
 }

@@ -24,7 +24,7 @@ export const PageControl = React.forwardRef<HTMLDivElement, PageControlProps>(
     ref
   ) {
     return (
-      <div ref={ref} className="db-page-control" data-type={type} {...rest}>
+      <div ref={ref} className="antares-page-control" data-type={type} {...rest}>
         {Array.from({ length: count }, (_, i) => (
           <PageControlItem key={i} type={type} active={i === activeIndex} />
         ))}

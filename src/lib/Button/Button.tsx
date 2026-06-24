@@ -68,7 +68,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
     <button
       ref={ref}
       type={type}
-      className="db-btn"
+      className="antares-btn"
       data-appearance={appearance}
       data-hierarchy={hierarchy}
       data-size={size}
@@ -77,13 +77,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
       {...rest}
     >
       {showLeftIcon && (
-        <span className="db-btn__icon db-btn__icon--left">
+        <span className="antares-btn__icon antares-btn__icon--left">
           {leftIcon ?? defaultIcon}
         </span>
       )}
-      <span className="db-btn__label">{children ?? label}</span>
+      <span className="antares-btn__label">{children ?? label}</span>
       {showRightIcon && (
-        <span className="db-btn__icon db-btn__icon--right">
+        <span className="antares-btn__icon antares-btn__icon--right">
           {rightIcon ?? defaultIcon}
         </span>
       )}

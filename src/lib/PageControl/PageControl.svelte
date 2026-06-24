@@ -19,7 +19,7 @@
   } = $props();
 </script>
 
-<div class="db-page-control" data-type={type} {...rest}>
+<div class="antares-page-control" data-type={type} {...rest}>
   {#each { length: count } as _, i}
     <PageControlItem {type} active={i === activeIndex} />
   {/each}

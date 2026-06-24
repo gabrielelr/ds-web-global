@@ -28,10 +28,10 @@
 </script>
 
 <div
-  class="db-searchbar"
+  class="antares-searchbar"
   data-force-state={state !== 'default' ? state : null}
 >
-  <span class="db-searchbar__icon" aria-hidden="true">
+  <span class="antares-searchbar__icon" aria-hidden="true">
     <!-- Antares search icon (Figma S8U9Li374QCzYEtwFBnaaX search-glass). -->
     <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g transform="translate(1.858 1.858)">
@@ -44,7 +44,7 @@
   </span>
 
   <input
-    class="db-searchbar__input"
+    class="antares-searchbar__input"
     type="search"
     {placeholder}
     {disabled}
@@ -55,7 +55,7 @@
   {#if value}
     <button
       type="button"
-      class="db-searchbar__clear"
+      class="antares-searchbar__clear"
       aria-label="Clear search"
       onclick={clear}
     >

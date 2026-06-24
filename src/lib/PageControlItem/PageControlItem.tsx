@@ -21,7 +21,7 @@ export const PageControlItem = React.forwardRef<HTMLSpanElement, PageControlItem
     return (
       <span
         ref={ref}
-        className="db-page-control-item"
+        className="antares-page-control-item"
         data-type={type}
         data-active={active ? 'true' : undefined}
         {...rest}

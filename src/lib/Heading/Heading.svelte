@@ -46,12 +46,12 @@
   </svg>
 {/snippet}
 
-<svelte:element this={tag} class="db-heading" data-level={level} {...rest}>
+<svelte:element this={tag} class="antares-heading" data-level={level} {...rest}>
   {#if showLeftIcon}
-    <span class="db-heading__icon">{@render defaultIcon()}</span>
+    <span class="antares-heading__icon">{@render defaultIcon()}</span>
   {/if}
-  <span class="db-heading__title">{text}</span>
+  <span class="antares-heading__title">{text}</span>
   {#if right}
-    <span class="db-heading__right">{@render right()}</span>
+    <span class="antares-heading__right">{@render right()}</span>
   {/if}
 </svelte:element>

@@ -33,17 +33,17 @@
 {/snippet}
 
 <span
-  class="db-badge-status"
+  class="antares-badge-status"
   data-status={status}
   data-appearance={appearance}
   {...rest}
 >
   {#if showIcon}
-    <span class="db-badge-status__icon">
+    <span class="antares-badge-status__icon">
       {#if icon}{@render icon()}{:else}{@render defaultIcon()}{/if}
     </span>
   {/if}
-  <span class="db-badge-status__label">
+  <span class="antares-badge-status__label">
     {#if children}{@render children()}{:else}{label}{/if}
   </span>
 </span>

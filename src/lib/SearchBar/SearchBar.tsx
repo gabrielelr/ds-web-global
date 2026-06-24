@@ -67,16 +67,16 @@ export const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
 
     return (
       <div
-        className="db-searchbar"
+        className="antares-searchbar"
         data-force-state={state !== 'default' ? state : undefined}
       >
-        <span className="db-searchbar__icon" aria-hidden="true">
+        <span className="antares-searchbar__icon" aria-hidden="true">
           {searchIcon}
         </span>
         <input
           ref={ref}
           type="search"
-          className="db-searchbar__input"
+          className="antares-searchbar__input"
           placeholder={placeholder}
           disabled={disabled}
           value={value}
@@ -86,7 +86,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
         {value && (
           <button
             type="button"
-            className="db-searchbar__clear"
+            className="antares-searchbar__clear"
             aria-label="Clear search"
             onClick={handleClear}
           >

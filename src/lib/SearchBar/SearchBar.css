@@ -2,10 +2,10 @@
  * Consumed by both SearchBar.svelte and SearchBar.tsx.
  *
  * Markup contract:
- *   <div class="db-searchbar" [data-force-state="active"]>
- *     <span class="db-searchbar__icon">…magnifying-glass…</span>
- *     <input class="db-searchbar__input" type="search" … />
- *     <button class="db-searchbar__clear">…X…</button>  (optional)
+ *   <div class="antares-searchbar" [data-force-state="active"]>
+ *     <span class="antares-searchbar__icon">…magnifying-glass…</span>
+ *     <input class="antares-searchbar__input" type="search" … />
+ *     <button class="antares-searchbar__clear">…X…</button>  (optional)
  *   </div>
  *
  * Active border is driven by `:focus-within` on the wrapper, so as long as
@@ -13,7 +13,7 @@
  * extra wiring. `data-force-state="active"` is a manual override for
  * snapshots / Storybook. */
 
-.db-searchbar {
+.antares-searchbar {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -37,13 +37,13 @@
   transition: border-color 120ms ease;
 }
 
-.db-searchbar:focus-within,
-.db-searchbar[data-force-state="active"] {
+.antares-searchbar:focus-within,
+.antares-searchbar[data-force-state="active"] {
   border-color: var(--search-bar-color-border-active);
 }
 
 /* ---------- LEFT ICON ---------- */
-.db-searchbar__icon {
+.antares-searchbar__icon {
   display: inline-flex;
   flex: none;
   align-items: center;
@@ -52,14 +52,14 @@
   height: 20px;
   color: var(--search-bar-color-icon);
 }
-.db-searchbar__icon svg {
+.antares-searchbar__icon svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
 /* ---------- INPUT ---------- */
-.db-searchbar__input {
+.antares-searchbar__input {
   flex: 1;
   min-width: 0;
   border: none;
@@ -69,17 +69,17 @@
   color: inherit;
   padding: 0;
 }
-.db-searchbar__input::placeholder {
+.antares-searchbar__input::placeholder {
   color: var(--search-bar-color-text-placeholder);
   opacity: 1;
 }
-.db-searchbar__input::-webkit-search-cancel-button {
+.antares-searchbar__input::-webkit-search-cancel-button {
   /* Hide the native cancel button on WebKit — we provide our own. */
   appearance: none;
 }
 
 /* ---------- CLEAR BUTTON ---------- */
-.db-searchbar__clear {
+.antares-searchbar__clear {
   display: inline-flex;
   flex: none;
   align-items: center;
@@ -93,7 +93,7 @@
   color: var(--search-bar-color-icon);
   cursor: pointer;
 }
-.db-searchbar__clear svg {
+.antares-searchbar__clear svg {
   width: 20px;
   height: 20px;
   display: block;

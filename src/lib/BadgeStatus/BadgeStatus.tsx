@@ -48,17 +48,17 @@ export const BadgeStatus = React.forwardRef<HTMLSpanElement, BadgeStatusProps>(
     return (
       <span
         ref={ref}
-        className="db-badge-status"
+        className="antares-badge-status"
         data-status={status}
         data-appearance={appearance}
         {...rest}
       >
         {showIcon && (
-          <span className="db-badge-status__icon">
+          <span className="antares-badge-status__icon">
             {icon ?? defaultIcon}
           </span>
         )}
-        <span className="db-badge-status__label">{children ?? label}</span>
+        <span className="antares-badge-status__label">{children ?? label}</span>
       </span>
     );
   }

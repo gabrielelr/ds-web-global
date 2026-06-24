@@ -57,7 +57,7 @@ export const ButtonIcon = React.forwardRef<HTMLButtonElement, ButtonIconProps>(
       <button
         ref={ref}
         type={type}
-        className="db-icon-btn"
+        className="antares-icon-btn"
         data-appearance={appearance}
         data-hierarchy={hierarchy}
         data-size={size}
@@ -65,7 +65,7 @@ export const ButtonIcon = React.forwardRef<HTMLButtonElement, ButtonIconProps>(
         disabled={isDisabled}
         {...rest}
       >
-        <span className="db-icon-btn__icon">{children ?? defaultIcon}</span>
+        <span className="antares-icon-btn__icon">{children ?? defaultIcon}</span>
       </button>
     );
   }

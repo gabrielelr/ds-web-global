@@ -42,7 +42,7 @@
 
 <button
   type="button"
-  class="db-icon-btn"
+  class="antares-icon-btn"
   data-appearance={appearance}
   data-hierarchy={hierarchy}
   data-size={size}
@@ -50,7 +50,7 @@
   disabled={isDisabled}
   {...rest}
 >
-  <span class="db-icon-btn__icon">
+  <span class="antares-icon-btn__icon">
     {#if children}{@render children()}{:else}{@render defaultIcon()}{/if}
   </span>
 </button>

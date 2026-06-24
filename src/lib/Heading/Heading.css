@@ -2,10 +2,10 @@
  * Consumed by both Heading.svelte and Heading.tsx.
  *
  * Markup contract:
- *   <h1 class="db-heading" data-level="d1|d2|h1|h2|h3">
- *     <span class="db-heading__icon">…icon…</span>  (optional)
- *     <span class="db-heading__title">Title text</span>
- *     <span class="db-heading__right">…link|badge|icon…</span>  (optional)
+ *   <h1 class="antares-heading" data-level="d1|d2|h1|h2|h3">
+ *     <span class="antares-heading__icon">…icon…</span>  (optional)
+ *     <span class="antares-heading__title">Title text</span>
+ *     <span class="antares-heading__right">…link|badge|icon…</span>  (optional)
  *   </h1>
  *
  * The wrapper element is configurable (h1/h2/h3/div/p/span) — `data-level`
@@ -16,7 +16,7 @@
  * text, `--heading-color-icon` for slot icons. */
 
 /* ---------- BASE ---------- */
-.db-heading {
+.antares-heading {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -26,31 +26,31 @@
 }
 
 /* ---------- LEVEL → TYPOGRAPHY ---------- */
-.db-heading[data-level="d1"] {
+.antares-heading[data-level="d1"] {
   font-family: var(--d1-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--d1-font-size);
   line-height: var(--d1-line-height);
   font-weight: var(--d1-font-weight);
 }
-.db-heading[data-level="d2"] {
+.antares-heading[data-level="d2"] {
   font-family: var(--d2-font-family, "Roboto"), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--d2-font-size);
   line-height: var(--d2-line-height);
   font-weight: var(--d2-font-weight);
 }
-.db-heading[data-level="h1"] {
+.antares-heading[data-level="h1"] {
   font-family: var(--h1-font-family, "Mulish"), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--h1-font-size);
   line-height: var(--h1-line-height);
   font-weight: var(--h1-font-weight);
 }
-.db-heading[data-level="h2"] {
+.antares-heading[data-level="h2"] {
   font-family: var(--h2-font-family, "Mulish"), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--h2-font-size);
   line-height: var(--h2-line-height);
   font-weight: var(--h2-font-weight);
 }
-.db-heading[data-level="h3"] {
+.antares-heading[data-level="h3"] {
   font-family: var(--h3-font-family, "Mulish"), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--h3-font-size);
   line-height: var(--h3-line-height);
@@ -58,7 +58,7 @@
 }
 
 /* ---------- LEFT ICON ---------- */
-.db-heading__icon {
+.antares-heading__icon {
   display: inline-flex;
   flex: none;
   align-items: center;
@@ -67,20 +67,20 @@
   height: 24px;
   color: var(--heading-color-icon);
 }
-.db-heading__icon svg {
+.antares-heading__icon svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
 /* ---------- TITLE ---------- */
-.db-heading__title {
+.antares-heading__title {
   flex: 1 1 auto;
   min-width: 0;
 }
 
 /* ---------- RIGHT SLOT (link / badge / icon) ---------- */
-.db-heading__right {
+.antares-heading__right {
   display: inline-flex;
   align-items: center;
   flex: none;
